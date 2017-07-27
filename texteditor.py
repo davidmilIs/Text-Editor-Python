@@ -1,47 +1,48 @@
 from tkinter import *
 import tkinter.filedialog
 
-filename = None
+filename = "Untilted"
 
 def newFile():
     global filename
     filename ="Untilted"
-    text.delete(0,0,END)
-    #0,0 Line number, Column Number
+    text.delete("1.0",END)
+    #1,0 Line number, Column Number
 
 def saveFile():
     global filename
-    t=text.get(0,0,END)
+    t=text.get("1.0",END)
     f=open(filename,'w')
     f.write(t)
     f.close()
 
 def saveAs():
-    f=asksaveasfile(mode='w',deffaultextension='.txt')
-    t= text.get(0,0,END)
+    f=tkinter.filedialog.asksaveasfilename()
+    t= text.get("1.0",END)
+    print(t)
     try:
-        f.write(t.rstrip())
+        f.write(t)
+        f.close
     except:
-        showerror(title="Error !",message="Unable to save file..")
+        print("Error")
 
 def openFile():
-    f=askopenfile(mode='r')
+    f=tkinter.filedialog.askopenfile(mode='r')
     t=f.read()
-    text.delete(0,0,END)
-    text.insert(0,0,t)
+    text.delete("1.0",END)
+    text.insert("1.0",t)
 
 root = Tk()
 root.title("Python Text Editor")
 root.minsize(width=640,height=400)
 root.maxsize(width=640,height=400)
+root.configure(background="black")
 
 text = Text(root, width=640,height=400)
 text.pack()
 
 menubar =Menu(root)
 filemenu =Menu(menubar)
-filemenu.add_command(label="New",command=newFile)
-
 filemenu.add_command(label="New",command=newFile)
 filemenu.add_command(label="Open",command=openFile)
 filemenu.add_command(label="Save",command=saveFile)
