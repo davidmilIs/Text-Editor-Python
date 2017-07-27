@@ -1,5 +1,5 @@
 from tkinter import *
-import tkinter.filedialog
+from tkinter.filedialog import *
 
 filename = "Untilted"
 
@@ -17,17 +17,17 @@ def saveFile():
     f.close()
 
 def saveAs():
-    f=tkinter.filedialog.asksaveasfilename()
+    f = asksaveasfile(defaultextension='.txt')
     t= text.get("1.0",END)
     print(t)
     try:
-        f.write(t)
+        f.write(t.rstrip())
         f.close
     except:
         print("Error")
 
 def openFile():
-    f=tkinter.filedialog.askopenfile(mode='r')
+    f=askopenfile(parent=root,title='Select a File')
     t=f.read()
     text.delete("1.0",END)
     text.insert("1.0",t)
