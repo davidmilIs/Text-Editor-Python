@@ -36,10 +36,12 @@ root = Tk()
 root.title("Python Text Editor")
 root.minsize(width=640,height=400)
 root.maxsize(width=640,height=400)
-root.configure(background="black")
+
 
 text = Text(root, width=640,height=400)
+text.configure(background="bisque")
 text.pack()
+
 
 menubar =Menu(root)
 filemenu =Menu(menubar)
